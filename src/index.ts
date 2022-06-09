@@ -1,5 +1,5 @@
 import app from './app';
-// inicio
+
 const PORT = 3000;
 
 const server = app.listen(PORT, () => console.log(
