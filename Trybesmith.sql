@@ -76,3 +76,13 @@ INSERT INTO
   Trybesmith.Products (name, amount, orderId)
 VALUES
   ("Engenhoca aleatória", "15 peças de ouro", 3);
+
+  SELECT 
+ord.id,
+ord.userId,
+prod.id productsIds
+FROM 
+  Trybesmith.Products as prod
+JOIN Trybesmith.Orders as ord
+ON ord.id = prod.orderId
+ORDER BY ord.id;

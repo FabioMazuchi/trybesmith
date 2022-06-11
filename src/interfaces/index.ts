@@ -20,3 +20,9 @@ export interface JwtConfig {
   expiresIn: string
   algorithm: string
 }
+
+export interface Prod {
+  id: number
+  userId: number
+  productsIds: number[]
+}
