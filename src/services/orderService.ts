@@ -22,8 +22,6 @@ async function getAll() {
     return obj;
   });
 
-  console.log(result);
-  
   return result;
 }
 
