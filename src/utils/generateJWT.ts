@@ -1,4 +1,3 @@
-// import jwt from 'jsonwebtoken';
 import Jwt from 'jsonwebtoken';
 
 import { UserNotPassword, UserToken } from '../interfaces';
@@ -8,7 +7,7 @@ const jwtConfig: Jwt.SignOptions = {
   algorithm: 'HS256',
 };
 
-function generateJWT(payload: UserNotPassword | UserToken, jwtSecret: string) {
+function generateJWT(payload: UserNotPassword | UserToken, jwtSecret: string): string {
   const token = Jwt.sign({ data: payload }, jwtSecret, jwtConfig);
 
   return token;

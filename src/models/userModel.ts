@@ -13,6 +13,14 @@ async function create(user: User): Promise<User> {
   return newUser;
 }
 
+async function getById(id: number | undefined): Promise<User | null> {
+  const query = 'SELECT * FROM Trybesmith.Users WHERE id=?';
+  const [data] = await connection.execute(query, [id]);
+  const [user] = data as User[];
+  return user;
+}
+
 export default {
   create,
+  getById,
 };

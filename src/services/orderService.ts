@@ -25,6 +25,11 @@ async function getAll() {
   return result;
 }
 
+async function create(userId: number | undefined) {
+  await orderModel.create(userId); 
+}
+
 export default {
   getAll,
+  create,
 };

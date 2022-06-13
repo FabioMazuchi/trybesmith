@@ -6,6 +6,12 @@ async function create(user: User) {
   return data;
 }
 
+async function getById(id: number | undefined) {
+  const user = userModel.getById(id);
+  return user;
+}
+
 export default {
   create,
+  getById,
 };

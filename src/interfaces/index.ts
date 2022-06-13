@@ -2,7 +2,7 @@ export interface Product {
   id?: number
   name: string
   amount: string
-  orederId?: number | null
+  orederId?: number
 }
 
 export interface UserNotPassword {
@@ -34,5 +34,14 @@ export interface JwtConfig {
 export interface Prod {
   id: number
   userId: number
+  productsIds: number[]
+}
+
+export interface MyJwt {
+  data: UserToken
+}
+
+export interface Order {
+  userId?: number
   productsIds: number[]
 }
