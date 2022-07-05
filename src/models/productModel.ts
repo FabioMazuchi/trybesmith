@@ -10,7 +10,7 @@ async function getAll(): Promise<Product[]> {
 }
 
 async function getById(id: number): Promise<Product | null> {
-  const query = 'SELECT * FROM Trybesmith.Products WHERE id=?';
+  const query = 'SELECT name, amount FROM Trybesmith.Products WHERE id=?';
   
   const [data] = await connection.execute(query, [id]);
   const [product] = data as Product[];
@@ -28,8 +28,16 @@ async function create(product: Product): Promise<Product> {
   return newProduct;
 }
 
+async function createProduct(product: Product) {
+  const { name, amount, orderId } = product;
+  const query = 'INSERT INTO Trybesmith.Products (name, amount, orderId) VALUES (?,?,?)';
+  const values = [name, amount, orderId];
+  await connection.execute(query, values);
+}
+
 export default {
   getAll,
   create,
   getById,
+  createProduct,
 };

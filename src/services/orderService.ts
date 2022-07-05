@@ -1,5 +1,6 @@
 import orderModel from '../models/orderModel';
-import { Prod } from '../interfaces';
+import productModel from '../models/productModel';
+import { Prod, Product } from '../interfaces';
 
 async function getAll() {
   const orders = await orderModel.getOrders();
@@ -25,8 +26,22 @@ async function getAll() {
   return result;
 }
 
-async function create(userId: number | undefined) {
-  await orderModel.create(userId); 
+async function create(userId: number | undefined, productsIds: number[]) {
+  const obj = await orderModel.create(userId); 
+  const { id: orderId } = obj;
+
+  const array = productsIds.map(productModel.getById);
+  
+  const result = await Promise.all(array);
+  const result2 = result as Product[];
+  
+  const final = result2.map((res) => {
+    res.orderId = orderId;
+    return res;
+  });
+  console.log(final);
+  
+  final.forEach(productModel.createProduct);
 }
 
 export default {

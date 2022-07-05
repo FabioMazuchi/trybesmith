@@ -16,9 +16,9 @@ async function create(req: Request, res: Response) {
   const decoded = Jwt.decode(token);
   const result = decoded as MyJwt;
   const { data: { id } } = result;
-  const final = { userId: id, products: productsIds };
+  const final = { userId: id, productsIds };
 
-  await orderService.create(id);
+  await orderService.create(id, productsIds);
   res.status(201).json(final);
 }
 

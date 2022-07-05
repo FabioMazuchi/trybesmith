@@ -20,7 +20,7 @@ async function create(userId: number | undefined) {
 
   const [result] = await connection.execute<ResultSetHeader>(query, [userId]);
   const { insertId: id } = result;
-  return id;
+  return { id, userId };
 }
 
 export default {
